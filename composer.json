@@ -1,0 +1,14 @@
+{
+    "name": "hexlet/code",
+    "description": "Мой первый проект 'Игры Разума' на PHP",
+		"license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "Hexlet\\Code\\": "src/"
+        }
+    },
+    "require": {},
+    "bin": [
+        "bin/brain-games"
+    ]
+}

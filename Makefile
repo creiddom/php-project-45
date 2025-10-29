@@ -1,8 +1,17 @@
 install:
 	composer install
 
+validate:
+	composer validate
+
+lint:
+	composer exec --verbose phpcs -- --standard=PSR12 src bin
+
+lint-fix:
+	phpcbf --standard=PSR12 src bin
+
 brain-games:
 	./bin/brain-games
 
-validate:
-	composer validate
+brain-even:
+	./bin/brain-even

@@ -1,0 +1,10 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use function Hexlet\Code\games\Even\even;
+use function Hexlet\Code\Cli\greeting;
+
+$name = greeting();
+even($name);

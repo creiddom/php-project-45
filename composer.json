@@ -1,19 +1,24 @@
 {
     "name": "hexlet/code",
     "description": "Мой первый проект 'Игры Разума' на PHP",
-		"license": "proprietary",
+	"license": "proprietary",
     "autoload": {
         "psr-4": {
             "Hexlet\\Code\\": "src/"
         },
         "files": [
-            "src/Cli.php"
+            "src/Cli.php",
+						"src/Games/Even.php"
         ]
     },
     "require": {
         "wp-cli/php-cli-tools": "^0.12.6"
     },
     "bin": [
-        "bin/brain-games"
-    ]
+        "bin/brain-games",
+        "bin/brain-even"
+    ],
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^4.0"
+    }
 }

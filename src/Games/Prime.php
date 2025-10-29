@@ -15,7 +15,7 @@ function generateRoundData(): array
         $result = 'no';
     } elseif ($num === 2) {
         $result = 'yes';
-    } elseif ($num % 2 === 0) { 
+    } elseif ($num % 2 === 0) {
         $result = 'no';
     } else {
         $result = 'yes';

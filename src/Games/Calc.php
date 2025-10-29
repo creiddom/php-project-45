@@ -25,6 +25,6 @@ function generateRoundData(): array
     }
     return [
         'question' => $question,
-        'correct_answer' => $result,
+        'correct_answer' => (string)$result,
     ];
 }

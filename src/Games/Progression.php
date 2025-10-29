@@ -22,6 +22,6 @@ function generateRoundData(): array
     $question = implode(' ', $progression);
     return [
         'question' => $question,
-        'correct_answer' => $result,
+        'correct_answer' => (string)$result,
     ];
 }

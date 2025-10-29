@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use function Hexlet\Code\Cli\greeting;
+use function Hexlet\Code\Engine\runGame;
+use function Hexlet\Code\Games\Prime\generateRoundData;
+use const Hexlet\Code\Games\Prime\DESCRIPTION;
+use function cli\line;
+
+
+line('Welcome to the Brain Game!');
+$name = greeting();
+line("Hello, %s!", $name);
+
+runGame($name, 'Hexlet\Code\Games\Prime\generateRoundData', DESCRIPTION);

@@ -3,6 +3,7 @@
 namespace Hexlet\Code\Cli;
 
 use function cli\prompt;
+use function cli\line;
 
 function greeting(): string
 {

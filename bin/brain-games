@@ -2,6 +2,7 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
+use function cli\line;
 
 line('Welcome to the Brain Game!');
 use function Hexlet\Code\Cli\greeting;

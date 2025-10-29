@@ -4,7 +4,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 use function cli\line;
 
-line('Welcome to the Brain Game!');
+line('Welcome to the Brain Games!');
 use function Hexlet\Code\Cli\greeting;
 
 greeting();

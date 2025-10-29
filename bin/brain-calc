@@ -5,12 +5,12 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use function Hexlet\Code\Cli\greeting;                     // I/O: Получить имя
 use function Hexlet\Code\Engine\runGame;                   // Движок: Запустить цикл
-use function Hexlet\Code\Games\Even\generateRoundData;     // Игра Even: Генерация вопроса
-use const Hexlet\Code\Games\Even\DESCRIPTION;             // Игра Even: Правила игры
+use function Hexlet\Code\Games\Calc\generateRoundData;     // Игра Calc: Генерация вопроса
+use const Hexlet\Code\Games\Calc\DESCRIPTION;             // Игра Calc: Правила игры
 use function cli\line;
 
 line('Welcome to the Brain Game!');
 $name = greeting();
 line("Hello, %s!", $name);
 
-runGame($name, 'Hexlet\Code\Games\Even\generateRoundData', DESCRIPTION);
+runGame($name, 'Hexlet\Code\Games\Calc\generateRoundData', DESCRIPTION);

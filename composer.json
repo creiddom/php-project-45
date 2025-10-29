@@ -1,14 +1,16 @@
 {
     "name": "hexlet/code",
     "description": "Мой первый проект 'Игры Разума' на PHP",
-	"license": "proprietary",
+    "license": "proprietary",
     "autoload": {
         "psr-4": {
             "Hexlet\\Code\\": "src/"
         },
         "files": [
             "src/Cli.php",
-						"src/Games/Even.php"
+            "src/Engine.php",
+            "src/Games/Even.php",
+            "src/Games/Calc.php"
         ]
     },
     "require": {
@@ -16,7 +18,8 @@
     },
     "bin": [
         "bin/brain-games",
-        "bin/brain-even"
+        "bin/brain-even",
+        "bin/brain-calc"
     ],
     "require-dev": {
         "squizlabs/php_codesniffer": "^4.0"

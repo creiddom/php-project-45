@@ -7,7 +7,7 @@ use function cli\prompt;
 
 const ROUNDS_COUNT = 3;
 
-function runGame(string $name, callable $gameCallback, string $description)
+function runGame(string $name, callable $gameCallback, string $description): void
 {
     line($description);
 
@@ -17,7 +17,7 @@ function runGame(string $name, callable $gameCallback, string $description)
         line('Question: %s', $roundData['question']);
         $userAnswer = prompt('Your answer');
         $correctAnswer = $roundData['correct_answer'];
-        if ($userAnswer == $correctAnswer) {
+        if ($userAnswer === $correctAnswer) {
             line('Correct!');
             $correctAnswersCount++;
         } else {

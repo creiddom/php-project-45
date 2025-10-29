@@ -15,7 +15,7 @@ function generateRoundData(): array
         $result = 'no';
     } elseif ($num === 2) {
         $result = 'yes';
-    } elseif ($num % 2 === 0) { // Проверка на четность, кроме 2
+    } elseif ($num % 2 === 0) { 
         $result = 'no';
     } else {
         $result = 'yes';
@@ -29,6 +29,6 @@ function generateRoundData(): array
 
     return [
         'question' => $question,
-        'correct_answer' => (string)$result,
+        'correct_answer' => $result,
     ];
 }

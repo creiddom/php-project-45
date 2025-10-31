@@ -1,10 +1,16 @@
 #!/usr/bin/env php
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
-use function cli\line;
+$autoloaders = [
+    __DIR__ . '/../vendor/autoload.php',
+    __DIR__ . '/../../autoload.php',
+];
+foreach ($autoloaders as $file) {
+    if (file_exists($file)) { require_once $file; break; }
+}
 
-line('Welcome to the Brain Games!');
-use function Hexlet\Code\Cli\greeting;
+use function Hexlet\Code\Engine\runGame;
+use function Hexlet\Code\Games\BrainGames\generateRoundData;
+use const Hexlet\Code\Games\BrainGames\DESCRIPTION;
 
-greeting();
+runGame('Hexlet\\Code\\Games\\BrainGames\\generateRoundData', DESCRIPTION);

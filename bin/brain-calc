@@ -1,16 +1,20 @@
 #!/usr/bin/env php
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
+$autoloaders = [
+    __DIR__ . '/../vendor/autoload.php', // локальная установка
+    __DIR__ . '/../../autoload.php',     // глобальная установка (composer global)
+];
+foreach ($autoloaders as $file) {
+    if (file_exists($file)) {
+        require_once $file;
+        break;
+    }
+}
 
-use function Hexlet\Code\Cli\greeting;                     // I/O: Получить имя
-use function Hexlet\Code\Engine\runGame;                   // Движок: Запустить цикл
-use function Hexlet\Code\Games\Calc\generateRoundData;     // Игра Calc: Генерация вопроса
-use const Hexlet\Code\Games\Calc\DESCRIPTION;             // Игра Calc: Правила игры
-use function cli\line;
+use function Hexlet\Code\Engine\runGame;
+use function Hexlet\Code\Games\Calc\generateRoundData;
+use const Hexlet\Code\Games\Calc\DESCRIPTION;
 
-line('Welcome to the Brain Game!');
-$name = greeting();
-line("Hello, %s!", $name);
-
-runGame($name, 'Hexlet\Code\Games\Calc\generateRoundData', DESCRIPTION);
+// Запускаем игру. Имя пользователя спрашивается внутри движка.
+runGame('Hexlet\\Code\\Games\\Calc\\generateRoundData', DESCRIPTION);

@@ -4,24 +4,29 @@ namespace Hexlet\Code\Games\Progression;
 
 const DESCRIPTION = 'What number is missing in the progression?';
 
+function buildProgression(int $start, int $step, int $length): array
+{
+    $res = [];
+    for ($i = 0; $i < $length; $i++) {
+        $res[] = $start + $i * $step;
+    }
+    return $res;
+}
+
 function generateRoundData(): array
 {
-    $start = rand(1, 100);
-    $step = rand(1, 5);
-    $length = rand(5, 10);
-    $progression = [];
-    $currentElement = 0;
-    $question = '';
-    for ($i = 0; $i < $length; $i++) {
-        $currentElement = $start + $i * $step;
-        $progression[] = $currentElement;
-    }
-    $hiddenIndex = rand(1, $length - 1);
-    $result = $progression[$hiddenIndex];
-    $progression[$hiddenIndex] = '..';
-    $question = implode(' ', $progression);
+    $start  = rand(1, 20);
+    $step   = rand(2, 10);
+    $length = 10;
+
+    $arr = buildProgression($start, $step, $length);
+
+    $hiddenIndex = rand(0, $length - 1);
+    $answer = $arr[$hiddenIndex];
+    $arr[$hiddenIndex] = '..';
+
     return [
-        'question' => $question,
-        'correct_answer' => (string)$result,
+        'question'       => implode(' ', $arr),
+        'correct_answer' => (string) $answer,
     ];
 }

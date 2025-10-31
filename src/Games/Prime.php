@@ -4,31 +4,34 @@ namespace Hexlet\Code\Games\Prime;
 
 const DESCRIPTION = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-function generateRoundData(): array
+function isPrime(int $n): bool
 {
-    $num = rand(1, 100);
-    $question = (string)$num;
-    $result = '';
-    $limit = sqrt($num);
+    if ($n < 2) {
+        return false;
+    }
+    if ($n === 2) {
+        return true;
+    }
+    if ($n % 2 === 0) {
+        return false;
+    }
 
-    if ($num < 2) {
-        $result = 'no';
-    } elseif ($num === 2) {
-        $result = 'yes';
-    } elseif ($num % 2 === 0) {
-        $result = 'no';
-    } else {
-        $result = 'yes';
-        for ($i = 3; $i <= $limit; $i += 2) {
-            if ($num % $i === 0) {
-                $result = 'no';
-                break;
-            }
+    $limit = (int) floor(sqrt($n));
+    for ($i = 3; $i <= $limit; $i += 2) {
+        if ($n % $i === 0) {
+            return false;
         }
     }
 
+    return true;
+}
+
+function generateRoundData(): array
+{
+    $num = rand(1, 100);
+
     return [
-        'question' => $question,
-        'correct_answer' => $result,
+        'question'       => (string) $num,
+        'correct_answer' => isPrime($num) ? 'yes' : 'no',
     ];
 }

@@ -1,3 +1,35 @@
+# Brain Games
+
+## Описание
+Набор консольных мини-игр: чётность, калькулятор, НОД, прогрессия, простые числа.
+## Требования
+- PHP >= 8.1
+- Composer
+## Установка (локально)
+```bash
+composer install
+composer dump-autoload
+```
+## Установка (глобально)
+```bash
+composer global require vendor/package
+```
+## Запуск
+```bash
+brain-games
+brain-even
+brain-calc
+brain-gcd
+brain-progression
+brain-prime
+```
+## Разработка
+```bash
+composer dump-autoload
+# при наличии линтера/статики:
+# make lint
+# vendor/bin/phpstan analyse
+```
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/creiddom/php-project-45/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/creiddom/php-project-45/actions)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=creiddom_php-project-45&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=creiddom_php-project-45)
@@ -6,5 +38,3 @@
 [Gcd-asciinema](https://asciinema.org/a/Lm1tUJkipiyvKIA0Tr3TG5rPA)
 [Progression-asciinema](https://asciinema.org/a/5dK6yk7YzpvPoudBVrfK4uxk6)
 [Prime-asciinema](https://asciinema.org/a/n1X6uaLJ5xqkyQXjnBb53kFrF)
-
-Я запушила с папкой games с маленькой буквы, из-за чего автотесты провалились. Окей, решила исправить. Запушила новый коммит с правильным регистром. И ничего. Так что, попробую добавить текст в редми, чтобы были какие-то изменения, и комит отправился. Если вы это видите, ничего не получилось исправить)

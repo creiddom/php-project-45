@@ -7,24 +7,95 @@ use function cli\prompt;
 
 const ROUNDS_COUNT = 3;
 
-function runGame(string $name, callable $gameCallback, string $description): void
+function detectGameByInvoker(): string
 {
-    line($description);
-
-    $correctAnswersCount = 0;
-    while ($correctAnswersCount < ROUNDS_COUNT) {
-        $roundData = $gameCallback();
-        line('Question: %s', $roundData['question']);
-        $userAnswer = prompt('Your answer');
-        $correctAnswer = $roundData['correct_answer'];
-        if ($userAnswer === $correctAnswer) {
-            line('Correct!');
-            $correctAnswersCount++;
-        } else {
-            line("'%s' is wrong answer ;(. Correct answer was '%s'.", $userAnswer, $correctAnswer);
-            line("Let's try again, %s!", $name);
-            return;
-        }
+    $exe = basename($_SERVER['argv'][0] ?? '');
+    switch ($exe) {
+        case 'brain-even':
+            return 'even';
+        case 'brain-calc':
+            return 'calc';
+        case 'brain-gcd':
+            return 'gcd';
+        case 'brain-progression':
+            return 'progression';
+        case 'brain-prime':
+            return 'prime';
+        case 'brain-games':
+        default:
+            return '';
     }
+}
+
+function getGameSpec(string $game): array
+{
+    switch ($game) {
+        case 'even':
+            return [
+                'description'   => \Hexlet\Code\Games\Even\DESCRIPTION,
+                'generateRound' => '\Hexlet\Code\Games\Even\generateRoundData',
+            ];
+        case 'calc':
+            return [
+                'description'   => \Hexlet\Code\Games\Calc\DESCRIPTION,
+                'generateRound' => '\Hexlet\Code\Games\Calc\generateRoundData',
+            ];
+        case 'gcd':
+            return [
+                'description'   => \Hexlet\Code\Games\Gcd\DESCRIPTION,
+                'generateRound' => '\Hexlet\Code\Games\Gcd\generateRoundData',
+            ];
+        case 'progression':
+            return [
+                'description'   => \Hexlet\Code\Games\Progression\DESCRIPTION,
+                'generateRound' => '\Hexlet\Code\Games\Progression\generateRoundData',
+            ];
+        case 'prime':
+            return [
+                'description'   => \Hexlet\Code\Games\Prime\DESCRIPTION,
+                'generateRound' => '\Hexlet\Code\Games\Prime\generateRoundData',
+            ];
+        default:
+            throw new \LogicException('Unknown game: ' . $game);
+    }
+}
+
+/**
+ * Запуск: приветствие и имя — всегда.
+ * Если запущен brain-games — только приветствуем и выходим.
+ * Если запущен конкретный бин (brain-even/…): запускаем раунды выбранной игры.
+ */
+function runGame(): void
+{
+    line('Welcome to the Brain Games!');
+    $name = prompt('May I have your name?');
+    line("Hello, %s!", $name);
+
+    $game = detectGameByInvoker();
+    if ($game === '') {
+        return;
+    }
+
+    $spec = getGameSpec($game);
+
+    if (!empty($spec['description'])) {
+        line($spec['description']);
+    }
+
+    for ($i = 0; $i < ROUNDS_COUNT; $i++) {
+        $round = ($spec['generateRound'])(); // ['question' => ..., 'correct_answer' => ...]
+        line('Question: %s', $round['question']);
+        $answer = prompt('Your answer');
+
+        if ($answer === $round['correct_answer']) {
+            line('Correct!');
+            continue;
+        }
+
+        line("'%s' is wrong answer ;(. Correct answer was '%s'.", $answer, $round['correct_answer']);
+        line("Let's try again, %s!", $name);
+        return; // ранний выход — без лишнего else
+    }
+
     line('Congratulations, %s!', $name);
 }

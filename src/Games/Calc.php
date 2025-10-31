@@ -4,27 +4,29 @@ namespace Hexlet\Code\Games\Calc;
 
 const DESCRIPTION = 'What is the result of the expression?';
 
+function calculate(int $a, int $b, string $op): int
+{
+    switch ($op) {
+        case '+':
+            return $a + $b;
+        case '-':
+            return $a - $b;
+        case '*':
+            return $a * $b;
+        default:
+            throw new \LogicException('Unknown operator: ' . $op);
+    }
+}
+
 function generateRoundData(): array
 {
-    $num1 = rand(1, 10);
-    $num2 = rand(1, 10);
-    $operators = ['+', '-', '*'];
-    $operator = $operators[array_rand($operators)];
-    $question = "{$num1} {$operator} {$num2}";
-    $result = 0;
-    switch ($operator) {
-        case '+':
-            $result = $num1 + $num2;
-            break;
-        case '-':
-            $result = $num1 - $num2;
-            break;
-        case '*':
-            $result = $num1 * $num2;
-            break;
-    }
+    $a = rand(1, 10);
+    $b = rand(1, 10);
+    $ops = ['+', '-', '*'];
+    $op  = $ops[array_rand($ops)];
+
     return [
-        'question' => $question,
-        'correct_answer' => (string)$result,
+        'question'       => "{$a} {$op} {$b}",
+        'correct_answer' => (string) calculate($a, $b, $op),
     ];
 }

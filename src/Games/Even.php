@@ -4,13 +4,21 @@ namespace Hexlet\Code\Games\Even;
 
 const DESCRIPTION = 'Answer "yes" if the number is even, otherwise answer "no".';
 
+function isEven(int $number): bool
+{
+    return $number % 2 === 0;
+}
+
+/**
+ * Генератор данных раунда:
+ * создаёт число и формирует вопрос/ответ с использованием чистой функции.
+ */
 function generateRoundData(): array
 {
     $randomNumber = rand(1, 100);
-    $question = (string)$randomNumber;
-    $correctAnswer = ($randomNumber % 2 === 0) ? 'yes' : 'no';
+
     return [
-        'question' => $question,
-        'correct_answer' => $correctAnswer,
+        'question'       => (string) $randomNumber,
+        'correct_answer' => isEven($randomNumber) ? 'yes' : 'no',
     ];
 }

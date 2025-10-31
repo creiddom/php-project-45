@@ -12,6 +12,9 @@ function gcd(int $a, int $b): int
     return abs($a);
 }
 
+/**
+ * @return array{question: string, correct_answer: string}
+ */
 function generateRoundData(): array
 {
     $num1 = rand(1, 100);

@@ -26,6 +26,9 @@ function isPrime(int $n): bool
     return true;
 }
 
+/**
+ * @return array{question: string, correct_answer: string}
+ */
 function generateRoundData(): array
 {
     $num = rand(1, 100);

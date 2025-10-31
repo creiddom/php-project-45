@@ -18,6 +18,9 @@ function calculate(int $a, int $b, string $op): int
     }
 }
 
+/**
+ * @return array{question: string, correct_answer: string}
+ */
 function generateRoundData(): array
 {
     $a = rand(1, 10);

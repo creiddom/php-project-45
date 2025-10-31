@@ -4,6 +4,9 @@ namespace Hexlet\Code\Games\Progression;
 
 const DESCRIPTION = 'What number is missing in the progression?';
 
+/**
+ * @return int[]  Массив элементов прогрессии
+ */
 function buildProgression(int $start, int $step, int $length): array
 {
     $res = [];
@@ -13,6 +16,9 @@ function buildProgression(int $start, int $step, int $length): array
     return $res;
 }
 
+/**
+ * @return array{question: string, correct_answer: string}
+ */
 function generateRoundData(): array
 {
     $start  = rand(1, 20);

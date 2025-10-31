@@ -29,5 +29,9 @@
         "squizlabs/php_codesniffer": "^4.0",
         "hexlet/phpstan-fp": "^3.1",
         "phpstan/phpstan-strict-rules": "^2.0"
+    },
+    "scripts": {
+        "phpstan": "phpstan analyse -c phpstan.neon --ansi src",
+        "phpcs": "phpcs src"
     }
 }

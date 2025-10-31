@@ -1,0 +1,9 @@
+includes:
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+
+parameters:
+    level: 6
+    paths:
+        - src        # если исходники лежат в src/
+        # - code     # если у тебя каталог называется code/, добавь эту строку вместо/вместе с src
+    treatPhpDocTypesAsCertain: false

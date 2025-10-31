@@ -2,6 +2,7 @@
 
 namespace Hexlet\Code\Engine;
 
+use Closure;
 use function cli\line;
 use function cli\prompt;
 
@@ -27,44 +28,45 @@ function detectGameByInvoker(): string
     }
 }
 
+/**
+ * @return array{
+ *   description: string,
+ *   generateRound: Closure(): array{question: string, correct_answer: string}
+ * }
+ */
 function getGameSpec(string $game): array
 {
     switch ($game) {
         case 'even':
             return [
                 'description'   => \Hexlet\Code\Games\Even\DESCRIPTION,
-                'generateRound' => '\Hexlet\Code\Games\Even\generateRoundData',
+                'generateRound' => Closure::fromCallable('\Hexlet\Code\Games\Even\generateRoundData'),
             ];
         case 'calc':
             return [
                 'description'   => \Hexlet\Code\Games\Calc\DESCRIPTION,
-                'generateRound' => '\Hexlet\Code\Games\Calc\generateRoundData',
+                'generateRound' => Closure::fromCallable('\Hexlet\Code\Games\Calc\generateRoundData'),
             ];
         case 'gcd':
             return [
                 'description'   => \Hexlet\Code\Games\Gcd\DESCRIPTION,
-                'generateRound' => '\Hexlet\Code\Games\Gcd\generateRoundData',
+                'generateRound' => Closure::fromCallable('\Hexlet\Code\Games\Gcd\generateRoundData'),
             ];
         case 'progression':
             return [
                 'description'   => \Hexlet\Code\Games\Progression\DESCRIPTION,
-                'generateRound' => '\Hexlet\Code\Games\Progression\generateRoundData',
+                'generateRound' => Closure::fromCallable('\Hexlet\Code\Games\Progression\generateRoundData'),
             ];
         case 'prime':
             return [
                 'description'   => \Hexlet\Code\Games\Prime\DESCRIPTION,
-                'generateRound' => '\Hexlet\Code\Games\Prime\generateRoundData',
+                'generateRound' => Closure::fromCallable('\Hexlet\Code\Games\Prime\generateRoundData'),
             ];
         default:
             throw new \LogicException('Unknown game: ' . $game);
     }
 }
 
-/**
- * Запуск: приветствие и имя — всегда.
- * Если запущен brain-games — только приветствуем и выходим.
- * Если запущен конкретный бин (brain-even/…): запускаем раунды выбранной игры.
- */
 function runGame(): void
 {
     line('Welcome to the Brain Games!');
@@ -73,12 +75,13 @@ function runGame(): void
 
     $game = detectGameByInvoker();
     if ($game === '') {
+        // bin/brain-games: только диалог об имени
         return;
     }
 
     $spec = getGameSpec($game);
 
-    if (!empty($spec['description'])) {
+    if ($spec['description'] !== '') {
         line($spec['description']);
     }
 
@@ -94,7 +97,7 @@ function runGame(): void
 
         line("'%s' is wrong answer ;(. Correct answer was '%s'.", $answer, $round['correct_answer']);
         line("Let's try again, %s!", $name);
-        return; // ранний выход — без лишнего else
+        return;
     }
 
     line('Congratulations, %s!', $name);

@@ -4,6 +4,9 @@ namespace Hexlet\Code\Games\BrainGames;
 
 const DESCRIPTION = '';  // ничего не выводится
 
+/**
+ * @return array{question: string, correct_answer: string}
+ */
 function generateRoundData(): array
 {
     return [

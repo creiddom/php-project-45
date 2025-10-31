@@ -13,6 +13,9 @@ function isEven(int $number): bool
  * Генератор данных раунда:
  * создаёт число и формирует вопрос/ответ с использованием чистой функции.
  */
+/**
+ * @return array{question: string, correct_answer: string}
+ */
 function generateRoundData(): array
 {
     $randomNumber = rand(1, 100);

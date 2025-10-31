@@ -3,6 +3,7 @@
 namespace Hexlet\Code\Engine;
 
 use Closure;
+
 use function cli\line;
 use function cli\prompt;
 

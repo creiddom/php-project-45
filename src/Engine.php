@@ -11,7 +11,7 @@ function runGame(array $rounds = [], string $description = ''): void
     $name = prompt('May I have your name?');
     line("Hello, %s!", $name);
 
-    if (empty($rounds)) {
+    if ($rounds === []) {
         return;
     }
 

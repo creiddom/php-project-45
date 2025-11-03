@@ -2,7 +2,28 @@
 
 namespace Hexlet\Code\Games\Prime;
 
+use function Hexlet\Code\Engine\runGame as runEngine;
+
 const DESCRIPTION = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+const ROUNDS_COUNT = 3;
+
+function runGame(): void
+{
+    $rounds = [];
+
+    for ($i = 0; $i < ROUNDS_COUNT; $i++) {
+        $num = rand(1, 100);
+        $question = (string) $num;
+        $correctAnswer = isPrime($num) ? 'yes' : 'no';
+
+        $rounds[] = [
+            'question' => $question,
+            'correct_answer' => $correctAnswer,
+        ];
+    }
+
+    runEngine($rounds, DESCRIPTION);
+}
 
 function isPrime(int $n): bool
 {
@@ -24,17 +45,4 @@ function isPrime(int $n): bool
     }
 
     return true;
-}
-
-/**
- * @return array{question: string, correct_answer: string}
- */
-function generateRoundData(): array
-{
-    $num = rand(1, 100);
-
-    return [
-        'question'       => (string) $num,
-        'correct_answer' => isPrime($num) ? 'yes' : 'no',
-    ];
 }

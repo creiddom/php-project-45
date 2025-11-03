@@ -1,6 +1,8 @@
 #!/usr/bin/env php
 <?php
 
+use function Hexlet\Code\Games\Calc\runGame;
+
 $autoloaders = [
     __DIR__ . '/../vendor/autoload.php', // локальная установка
     __DIR__ . '/../../autoload.php',     // глобальная установка (composer global)
@@ -12,9 +14,5 @@ foreach ($autoloaders as $file) {
     }
 }
 
-use function Hexlet\Code\Engine\runGame;
-use function Hexlet\Code\Games\Calc\generateRoundData;
-use const Hexlet\Code\Games\Calc\DESCRIPTION;
-
 // Запускаем игру. Имя пользователя спрашивается внутри движка.
-runGame('Hexlet\\Code\\Games\\Calc\\generateRoundData', DESCRIPTION);
+runGame();

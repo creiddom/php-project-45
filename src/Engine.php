@@ -5,11 +5,15 @@ namespace Hexlet\Code\Engine;
 use function cli\line;
 use function cli\prompt;
 
-function runGame(array $rounds, string $description): void
+function runGame(array $rounds = [], string $description = ''): void
 {
     line('Welcome to the Brain Games!');
     $name = prompt('May I have your name?');
     line("Hello, %s!", $name);
+
+    if (empty($rounds)) {
+        return;
+    }
 
     if ($description !== '') {
         line($description);
@@ -21,12 +25,11 @@ function runGame(array $rounds, string $description): void
 
         if ($answer === $round['correct_answer']) {
             line('Correct!');
-            continue;
+        } else {
+            line("'%s' is wrong answer ;(. Correct answer was '%s'.", $answer, $round['correct_answer']);
+            line("Let's try again, %s!", $name);
+            return;
         }
-
-        line("'%s' is wrong answer ;(. Correct answer was '%s'.", $answer, $round['correct_answer']);
-        line("Let's try again, %s!", $name);
-        return;
     }
 
     line('Congratulations, %s!', $name);

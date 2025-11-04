@@ -5,11 +5,15 @@ namespace Hexlet\Code\Engine;
 use function cli\line;
 use function cli\prompt;
 
-function runGame(array $rounds, string $description): void
+function runGame(array $rounds = [], string $description = ''): void
 {
     line('Welcome to the Brain Games!');
     $name = prompt('May I have your name?');
     line("Hello, %s!", $name);
+
+    if (func_num_args() === 0) {
+        return;
+    }
 
     line($description);
 

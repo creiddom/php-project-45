@@ -16,26 +16,20 @@ function runGame(): void
         $step   = rand(2, 10);
         $length = 10;
 
-        $arr = buildProgression($start, $step, $length);
+        $progression = [];
+        for ($j = 0; $j < $length; $j++) {
+            $progression[] = $start + $j * $step;
+        }
 
         $hiddenIndex = rand(0, $length - 1);
-        $answer = $arr[$hiddenIndex];
-        $arr[$hiddenIndex] = '..';
+        $answer = $progression[$hiddenIndex];
+        $progression[$hiddenIndex] = '..';
 
         $rounds[] = [
-            'question'       => implode(' ', $arr),
+            'question'       => implode(' ', $progression),
             'correct_answer' => (string) $answer,
         ];
     }
 
     runEngine($rounds, DESCRIPTION);
-}
-
-function buildProgression(int $start, int $step, int $length): array
-{
-    $res = [];
-    for ($i = 0; $i < $length; $i++) {
-        $res[] = $start + $i * $step;
-    }
-    return $res;
 }

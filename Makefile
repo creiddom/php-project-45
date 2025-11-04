@@ -10,6 +10,9 @@ lint:
 lint-fix:
 	composer exec --verbose phpcbf -- --standard=PSR12 src bin
 
+phpstan:
+	composer run phpstan
+
 brain-games:
 	./bin/brain-games
 
